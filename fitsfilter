@@ -1,0 +1,168 @@
+#!/usr/bin/env python
+import getopt
+import sys
+import pyfits
+
+def fitsfilter(filenames, rec, cond, val, ext=(0,)):
+    """
+    Filter fits files with condition on keyword.
+    
+    Parameters
+    ----------
+    filenames: list of strings
+        List of file names to test.
+    rec: list of strings
+        Records to look for in file.
+    cond: list of { '==', '>' '<', '>=', '<=', '!='}
+        Conditions that the record values should satisfy.
+    val: list of scalars or strings
+        Values for the conditional test on records.
+    ext: int
+        Extension where the record should be located.
+
+    Returns
+    -------
+    out_files: list of strings
+       List of fits files satisfying the conditions.
+
+    Exemple
+    -------
+    fitsfilter('test.fits', 'NDIM', '==', 1)
+    >>> 'test.fits'
+
+    """
+    # test inputs
+    if not isinstance(filenames, str):
+        if not hasattr(filenames, "__iter__"):
+            raise ValueError("filenames should be a list of strings or a string.")
+        else:
+            for filename in filenames:
+                if not isinstance(filename, str):
+                    raise ValueError("filenames elements should be strings.")
+        single_file = False
+    else:
+        filenames = filenames,
+        single_file = True
+    if not isinstance(rec, str):
+        if not hasattr(rec, "__iter__"):
+            raise ValueError("rec should be a list or a string.")
+        else:
+            for r in rec:
+                if not isinstance(r, str):
+                    raise ValueError("rec elements should be strings.")
+    else:
+        # if str make a len 1 list
+        rec = rec,
+    if cond not in ('==', '>' '<', '>=', '<=', '!='):
+        if not hasattr(cond, "__iter__"):
+            raise ValueError("cond should be a list or in ('==', '>' '<', '>=', '<=', '!=').")
+        else:
+            for c in cond:
+                if not isinstance(c, str):
+                    raise ValueError("cond should be a list or in ('==', '>' '<', '>=', '<=', '!=').")
+    else:
+        cond = cond,
+    if not isinstance(val, str):
+        if not hasattr(val, "__iter__"):
+            raise ValueError("val should be a list or a string.")
+        else:
+            for v in val:
+                if not isinstance(v, str):
+                    raise ValueError("val elements should be strings.")
+    else:
+        # if str make a len 1 list
+        val = val,
+    if not isinstance(ext, int):
+        if not hasattr(ext, "__iter__"):
+            raise ValueError("ext should be a list or an int.")
+        else:
+            for e in ext:
+                if not isinstance(e, int):
+                    raise ValueError("ext elements should be ints.")
+    else:
+        # if str make a len 1 list
+        ext = ext,
+    out_files = list()
+    # parse filenames
+    for f in filenames:
+        # test if file exists
+        try:
+            fo = pyfits.fitsopen(f)
+        except IOError:
+            test = False
+        if "fo" in locals():
+            # exist but not fits file
+            if len(fo) == 0:
+                test = False
+            # exist and is fits
+            test = True
+        # test all conditions
+        for r, c, v, e in zip(rec, cond, val, ext):
+            t = fo[e].header[r]
+            try:
+                exec(" ".join(("if", "not", str(t), c, str(v))) + ": test = False")
+            # extension does not exist
+            except IndexError:
+                test = False
+            # record does not exist
+            except KeyError:
+                test = False
+        if test:
+            out_files.append(f)
+        del fo
+    if single_file:
+        return out_files[0]
+    else:
+        return out_files
+
+def main():
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "ht:e:", ["help", "test=", "ext="])
+    except getopt.GetoptError, err:
+        # print help information and exit:
+        print str(err) # will print something like "option -a not recognized"
+        usage()
+        sys.exit(2)
+    out = args
+    test = list()
+    ext = 0
+    verbose = False
+    if len(args) == 0:
+        usage()
+        return
+    for o, a in opts:
+        if o in ("-t", "--test"):
+            test.append(a)
+        elif o in ("-e", "--ext"):
+            ext = int(a)
+        elif o in ("-h", "--help"):
+            usage()
+            sys.exit()
+        else:
+            assert False, "unhandled option"
+    # parse files
+    rec, cond, val = list(), list(), list()
+    for t in test:
+        r, c, v = t.split(" ")
+        rec.append(r)
+        cond.append(c)
+        val.append(v)
+    out = fitsfilter(out, rec, cond, val, ext)
+    for o in out:
+        print o
+
+def usage():
+    print(__usage__)
+
+__usage__ = """Usage: fitsfilter [options] [filename(s)]
+
+Options:
+  -h, --help        Show this help message and exit
+  -t, --test        Defines a test to perform on a fits header record.
+                    If no test is given, outputs filename(s).
+  -e, --ext         Extension where the record should be looked for.
+"""
+
+# to call from command line
+if __name__ == "__main__":
+    main()
