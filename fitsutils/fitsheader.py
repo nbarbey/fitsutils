@@ -44,7 +44,7 @@ def print_header(filename, ext=None, rec=None):
         ext = xrange(n_ext)
     # print headers
     for e in ext:
-        if isinstance(ext, xrange):
+        if isinstance(ext, xrange) and not n_ext==1:
             print("-" * LINE_WIDTH)
             print("Extension number " + str(e))
             print("-" * LINE_WIDTH)
@@ -56,11 +56,10 @@ def print_header(filename, ext=None, rec=None):
             crec = rec
         for r in crec:
             print(r + " " * (KEY_WIDTH - len(r)) +'\t' + str(fits[e].header[r]))
-        print("")
 
 def main():
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hr:e:", ["help", "rec=", "ext="])
+        opts, args = getopt.getopt(sys.argv[1:], "hnr:e:", ["help", "names", "rec=", "ext="])
     except(getopt.GetoptError, err):
         print(err)
         usage()
@@ -68,6 +67,7 @@ def main():
     filenames = args
     ext = list()
     rec = list()
+    show_names = False
     if len(args) == 0:
         usage()
         return
@@ -79,15 +79,19 @@ def main():
             ext.append(int(a))
         elif o in ("-r", "--rec"):
             rec.append(a)
+        elif o in ("-n", "--names"):
+            show_names = True
         else:
             assert False, "unhandled option"
     # parse files
     for filename in filenames:
-        if len(filenames) > 1:
+        if show_names:
             print("=" * LINE_WIDTH)
             print("File " + filename)
             print("=" * LINE_WIDTH)
         print_header(filename, ext, rec)
+        if show_names:
+            print(" ")
 
 def usage():
     print(__usage__)
@@ -98,6 +102,7 @@ Options:
   -h, --help        Show this help message and exit
   -e, --ext         Extension number to print.
   -r, --rec         Record string to print.
+  -n, --names       Display filenames before headers.
 """
 
 # to call from command line

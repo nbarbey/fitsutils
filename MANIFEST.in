@@ -1,0 +1,7 @@
+include fitsutils/fitsheader
+include fitsutils/fitsfilter
+include AUTHOR
+include LICENCE_FR
+include LICENSE
+include README.rst
+recursive-include tests *.py
