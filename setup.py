@@ -5,7 +5,7 @@ from os.path import join
 import sys
 setup(name='fitsutils',
       version='0.2.0',
-      description='An ndarray subclass with a fits header',
+      description='A set of small command-line tools for FITS files',
       author='Nicolas Barbey',
       author_email='nicolas.a.barbey@gmail.com',
       requires = ['numpy (>1.3.0)', 'pyfits'],
