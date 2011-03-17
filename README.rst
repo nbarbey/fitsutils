@@ -30,12 +30,12 @@ Installation
 
 Get the source code, e.g:
 
-..raw: git clone https://github.com/nbarbey/fitsutils
+git clone https://github.com/nbarbey/fitsutils
 
 Install with distutils from new directory:
 
-..raw: python setup.py install
+python setup.py install
 
 If you do not have root privilege, you can install in your home:
 
-..raw: python setup.py install --prefix=$HOME/local/
+python setup.py install --prefix=$HOME/local/
