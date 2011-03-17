@@ -28,14 +28,14 @@ You will need pyfits, numpy and matplotlib.
 Installation
 ============
 
-Get the source code, e.g:
+Get the source code, e.g::
 
-git clone https://github.com/nbarbey/fitsutils
+  git clone https://github.com/nbarbey/fitsutils
 
-Install with distutils from new directory:
+Install with distutils from new directory::
 
-python setup.py install
+  python setup.py install
 
-If you do not have root privilege, you can install in your home:
+If you do not have root privilege, you can install in your home::
 
-python setup.py install --prefix=$HOME/local/
+  python setup.py install --prefix=$HOME/local/
