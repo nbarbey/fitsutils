@@ -10,4 +10,5 @@ setup(name='fitsutils',
       author_email='nicolas.a.barbey@gmail.com',
       requires = ['numpy (>1.3.0)', 'pyfits'],
       packages=['fitsutils'],
+      scripts=['fitsutils/fitsheader', 'fitsutils/fitsfilter', 'fitsutils/fitsview'],
       )
