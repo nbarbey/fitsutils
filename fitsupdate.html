@@ -62,6 +62,16 @@ fitsheader:
 fitsheader -e 0 -r DATE swp05569slg.fits
 </pre>
 
+If you do not want to install fitsutils and still want to use
+fitsupdate, you can simply put
+the <a href="https://github.com/nbarbey/fitsutils/raw/master/fitsutils/fitsupdate.py">
+fitsheader file </a> in your path. Do not forget to make it
+executable:
+
+<pre>
+wget https://github.com/nbarbey/fitsutils/raw/master/fitsutils/fitsupdate.py
+chmod +x fitsupdate.py
+</pre>
 
     <div class="footer">
       get the source code on GitHub :
