@@ -141,7 +141,33 @@ argument -n will display the name of the file at the beginning of each header:
 fitsheader -n *
 </pre>
 
+A great thing about fitsheader is that you can combine it with the
+power of the command line. If you want to list the keywords of the
+first extension of a FITS file, you can just :
 
+<pre>
+fitsheader -e 1 swp05569slg.fits | cut -f 1
+</pre>
+
+or to get only the values :
+
+<pre>
+fitsheader -e 1 swp05569slg.fits | cut -f 2
+</pre>
+
+You can store an header in a text file :
+
+<pre>
+fitsheader swp05569slg.fits >> header.txt
+</pre>
+
+You get the idea.
+
+If you do not want to install fitsutils and still want to use
+fitsheader, you can simply put
+the <a href="https://github.com/nbarbey/fitsutils/raw/master/fitsutils/fitsheader.py">
+fitsheader file </a> in your path. Do not forget to make it
+executable.
 
     <div class="footer">
       get the source code on GitHub :
