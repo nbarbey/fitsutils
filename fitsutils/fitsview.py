@@ -29,7 +29,7 @@ def main():
     filename = args[0]
     if len(args) > 1:
         outfile = args[1]
-    ext = 0
+    ext = list()
     if len(args) == 0:
         usage()
         return
@@ -42,8 +42,11 @@ def main():
         else:
             assert False, "unhandled option"
     # parse files
+    if len(ext) == 0:
+        ext = list((0,))
     if outfile is None:
-        plot_fits(filename, ext)
+        for e in ext:
+            plot_fits(filename, e)
     else:
         NotImplemented
 
