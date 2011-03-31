@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <title>nbarbey/fitsutils @ GitHub</title>
+  <link rel="stylesheet" type="text/css" href="fitsutils.css" />
+</head>
+
+<body>
+  <a href="http://github.com/nbarbey/fitsutils">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+	 src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+	 alt="Fork me on GitHub" />
+  </a>
+
+  <div id="container">
+
+    <div class="download">
+      <a href="http://github.com/nbarbey/fitsutils/zipball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+      <a href="http://github.com/nbarbey/fitsutils/tarball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+    </div>
+
+    <h1><a href="http://github.com/nbarbey/fitsutils">fitsutils</a>
+      <span class="small">by <a href="http://github.com/nbarbey">nbarbey</a></span></h1>
+
+    <div class="description">
+      A set of small command-line tools for FITS files
+    </div>
+
+<h2> fitsheader </h2>
+
+<h3> Why fitsheader </h3>
+
+<p>
+  Reading a fits header from the command-line interface can be a real
+  headache. Indeed, the primary fits header is stored as text at the
+  beginning of the fits file. So you can see it with a simple more
+  command. But then it is stored as a very long single line so it will
+  look really bad if your terminal is not exactly 80 character wide.
+  And what if you want to look at an extended fits header ? You just
+  can't.
+</p>
+
+<p>
+  But those tasks are very easy in Python thanks
+  to <a href="http://www.stsci.edu/resources/software_hardware/pyfits">
+  PyFITS</a>. So why not write a simple script which will internally
+  call PyFITS and nicely display the output in the terminal ? That's
+  exactly what fitsheader is doing. 
+</p>
+
+<h3> A simple exemple </h3>
+<a href="http://www.cv.nrao.edu/fits/"> FITS archive at NRAO </a>
+provides people with reference articles about the FITS standard and
+also provides nice <a href="http://www.cv.nrao.edu/fits/data/"> FITS
+file exemples </a>. So let us grab an exemple file and see what we
+get with fitsheader:
+
+<pre>
+wget http://www.cv.nrao.edu/fits/data/samples/image/swp05569slg.fits
+fitsheader swp05569slg.fits
+</pre>
+
+You should get something like this :
+<pre>
+---------------------------------------------------------------------------
+Extension number 0
+---------------------------------------------------------------------------
+SIMPLE          True
+BITPIX          16
+NAXIS           2
+NAXIS1          831
+NAXIS2          110
+EXTEND          True
+FILENAME        swp05569slg
+TELESCOP        IUE
+ORIGIN          GODDARD
+CAMERA          3
+IMAGE           5569
+APERTURE        LARGE
+DISPERSN        LOW
+DATE-OBS        19/06/79 3:10:00
+DATE-PRO        28/02/91 16:32:00
+DATE             5-Aug-1992
+RA              5.78708
+DEC             77.5331
+EQUINOX         1950.0
+JDATE           4049
+THDA-RES        12.8
+THDA-SPE        12.8
+BZERO           12678.9
+BSCALE          0.432251
+CRVAL1          1000.0
+CRPIX           1.0
+CDELT1          1.17834
+COMMENT         *
+                                        0001000103312048   1 1 023105569   +103     1  C
+HISTORY         IUE-LOG STARTED
+---------------------------------------------------------------------------
+Extension number 1
+---------------------------------------------------------------------------
+XTENSION        IMAGE
+BITPIX          16
+NAXIS           2
+NAXIS1          831
+NAXIS2          110
+PCOUNT          0
+GCOUNT          1
+FILENAME        swp05569slg
+EXTNAME         ELBLF
+</pre>
+
+Let us assume you are only interested in the first extension. Just type:
+
+<pre>
+fitsheader -e 1 swp05569slg.fits
+</pre>
+
+and you will get what you want. Note that the extension number is not
+provided here as you asked for a specific extension number.
+
+<pre>
+fitsheader -r NAXIS swp05569slg.fits
+</pre>
+
+will give you the number of dimensions for each extension
+
+<pre>
+fitsheader -e 0 -r BITPIX swp05569slg.fits
+</pre>
+
+will give you the float encoding of the extension number 0.
+
+You can display headers of multiple files at once with. The optional
+argument -n will display the name of the file at the beginning of each header:
+
+<pre>
+fitsheader -n *
+</pre>
+
+
+
+    <div class="footer">
+      get the source code on GitHub :
+      <a href="http://github.com/nbarbey/fitsutils">nbarbey/fitsutils</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
