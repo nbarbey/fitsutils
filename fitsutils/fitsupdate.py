@@ -41,7 +41,7 @@ def main():
             usage()
             sys.exit()
         elif o in ("-e", "--ext"):
-            ext.append(a)
+            ext.append(int(a))
         elif o in ("-r", "--rec"):
             rec.append(a)
         elif o in ("-v", "--val"):
