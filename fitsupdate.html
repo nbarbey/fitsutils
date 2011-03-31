@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <title>nbarbey/fitsutils @ GitHub</title>
+  <link rel="stylesheet" type="text/css" href="fitsutils.css" />
+</head>
+
+<body>
+  <a href="http://github.com/nbarbey/fitsutils">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+	 src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+	 alt="Fork me on GitHub" />
+  </a>
+
+  <div id="container">
+
+    <div class="download">
+      <a href="http://github.com/nbarbey/fitsutils/zipball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+      <a href="http://github.com/nbarbey/fitsutils/tarball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+    </div>
+
+    <h1><a href="http://github.com/nbarbey/fitsutils">fitsutils</a>
+      <span class="small">by <a href="http://github.com/nbarbey">nbarbey</a></span></h1>
+
+    <div class="description">
+      A set of small command-line tools for FITS files
+    </div>
+
+<h2> fitsupdate </h2>
+
+<h3> Why fitsupdate </h3>
+
+fitsupdate is a simple command-line tool to update the value
+associated with a keyword in a give fits file header. Its aims at
+being simple and flexible.
+
+<h3> A simple exemple </h3>
+As in the fitsheader exemples you can get a sample file like this:
+
+<pre>
+wget http://www.cv.nrao.edu/fits/data/samples/image/swp05569slg.fits
+</pre>
+
+Assume you want to update the DATE record of the primary header to the
+current date. You can type :
+
+<pre>
+fitsupdate -e 0 -r DATE -v "`date`" swp05569slg.fits
+</pre>
+
+The -v option set the value the DATE record will be updated with. The
+"`date`" input will evaluate the date command and output the
+results. The double quotes are necessary to handle the whitespaces in
+the output of date. To check that everything went fine, you can use
+fitsheader:
+
+<pre>
+fitsheader -e 0 -r DATE swp05569slg.fits
+</pre>
+
+
+    <div class="footer">
+      get the source code on GitHub :
+      <a href="http://github.com/nbarbey/fitsutils">nbarbey/fitsutils</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
