@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 """
-Perform tasks on fits headers from the command line.
-
-cat : Print fits header to standard output.
-update : Modify a record value.
+Display fits headers in the command line.
 
 Depends on the pyfits package.
 
