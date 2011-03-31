@@ -56,7 +56,7 @@ def fitsfilter(filenames, test_str, ext=0):
 def add_quotes_to_keys(s):
     import re
     # match any string key
-    c = re.compile(r"[[A-Z]+[0_9]*]")
+    c = re.compile(r"a\[[A-z]+.*\]")
     g = re.findall(c, s)
     for gi in g:
         gt = gi.replace("[", "[\"")
