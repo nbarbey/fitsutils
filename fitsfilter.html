@@ -44,8 +44,8 @@ Get a sample fits file:
 wget http://www.cv.nrao.edu/fits/data/samples/image/swp05569slg.fits
 </pre>
 
-The syntax of fitsfilter is a bit odd but allows a lot of flexibility
-in the tests.
+The syntax of fitsfilter can seem a bit odd but allows a lot of
+flexibility in the tests.
 
 To start simple, let us filter files with two-dimensional arrays in
 the primary extension.
@@ -64,7 +64,13 @@ perform inequality tests.
 fitsfilter -t a[NAXIS] >= 2 *
 </pre>
 
+You can test keywords against one another. You can also combine tests
+with or / and. To find all files which are square images, you can
+type:
 
+<pre>
+fitsfilter  -t "a[NAXIS1] == a[NAXIS2] and a[NAXIS] == 2" *
+</pre>
 
 <h3> Installation </h3>
 
