@@ -10,6 +10,8 @@ Transport System (FITS) files in the command-line. It contains:
 
 - fitsheader: Display the header of a FITS file to stdout.
 
+- fitsupdate: Update the header of a FITS file.
+
 - fitsfilter: Filter a list of files using conditions on header content.
 
 - fitsview: Display a simple FITS image (requires matplotlib).
@@ -17,13 +19,10 @@ Transport System (FITS) files in the command-line. It contains:
 - fitsarray: A module to load FITS data as ndarray storing header as
   an attribue.
 
-
-
 Requirements
 =============
 
-You will need pyfits, numpy and matplotlib.
-
+You will need pyfits and numpy (and matplotlib for fitsview).
 
 Installation
 ============
