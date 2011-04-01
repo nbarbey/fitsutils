@@ -4,18 +4,29 @@ Display fits images using pyfits and matplotlib.
 
 Author: Nicolas Barbey
 """
-#import pyfits
-import sys, getopt
-import matplotlib.pylab as mp
-import fitsarray as fa
 
-
-def plot_fits(filename, ext=0):
-    a = fa.FitsArray(file=filename, ext=ext)
+def show_fits(filename, ext=None, outfile=None):
+    # imports
+    import matplotlib.pylab as mp
+    import pyfits
+    # open file
+    fits = pyfits.fitsopen(filename)
+    if ext is None:
+        # display the first image-like extension
+        for e in xrange(len(fits)):
+            a = fits[e].data
+            if a.ndim == 2:
+                break
+    else:
+        a = fits[ext].data
     mp.imshow(a)
-    mp.show()
+    if outfile is None:
+        mp.show()
+    else:
+        mp.savefig(outfile)
 
 def main():
+    import sys, getopt
     try:
         opts, args = getopt.getopt(sys.argv[1:], "he:", ["help", "ext="])
     except(getopt.GetoptError, err):
@@ -44,11 +55,8 @@ def main():
     # parse files
     if len(ext) == 0:
         ext = list((0,))
-    if outfile is None:
-        for e in ext:
-            plot_fits(filename, e)
-    else:
-        NotImplemented
+    for e in ext:
+        show_fits(filename, e, outfile)
 
 def usage():
     print(__usage__)
@@ -59,7 +67,7 @@ If no output file is provided, display the image.
 Otherwise, save the plot as an image to the output file.
 
 Options:
-  -h, --help        Show this help message and exit
+  -h, --help        Show this help message and exit.
   -e, --ext         Extension number to print.
 """
 
