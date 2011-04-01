@@ -52,6 +52,20 @@ fitsview swp05569slg.fits
 
 You should get something like this:
 
+<p align="center" >
+<img src="swp05569slg.png" WIDTH="50%" HEIGHT="50%" /> 
+</p>
+
+Instead of displaying the image, you can store it into an image file
+like this:
+
+<pre>
+fitsview swp05569slg.fits swp05569slg.png
+</pre>
+
+Internally, this script uses matplotlib imshow function to generate
+the figure. For now, passing argument to imshow is not implemented so
+you can only get the default output of imshow.
 
 <h3> Installation </h3>
 
