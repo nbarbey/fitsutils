@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <title>nbarbey/fitsutils @ GitHub</title>
+  <link rel="stylesheet" type="text/css" href="fitsutils.css" />
+</head>
+
+<body>
+  <a href="http://github.com/nbarbey/fitsutils">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+	 src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+	 alt="Fork me on GitHub" />
+  </a>
+
+  <div id="container">
+
+    <div class="download">
+      <a href="http://github.com/nbarbey/fitsutils/zipball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+      <a href="http://github.com/nbarbey/fitsutils/tarball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+    </div>
+
+    <h1><a href="http://github.com/nbarbey/fitsutils">fitsutils</a>
+      <span class="small">by <a href="http://github.com/nbarbey">nbarbey</a></span></h1>
+
+    <div class="description">
+      A set of small command-line tools for FITS files
+    </div>
+
+<h2> fitsarray </h2>
+
+<h3> Why fitsarray </h3>
+
+fitsarray is not a script. It is a very simple library to handle FITS
+data as an nd-array supplemented with metadata stored in the header.
+
+
+<h3> A simple exemple </h3>
+
+Get an exemple file :
+<pre>
+wget http://www.cv.nrao.edu/fits/data/samples/image/swp05569slg.fits
+</pre>
+
+Now, we are going to work in the IPython command-line interface which
+is highly recommanded for interactive python sessions. 
+
+<pre>
+ipython
+</pre>
+
+Import fitsarray into the session. For convenience we will shorten the
+name to fa:
+
+<pre>
+from fitsutils import fitsarray as fa
+</pre>
+
+Now you can easily load data using fitsarray:
+
+<pre>
+data = fa.FitsArray(file="swp05569slg.fits")
+</pre>
+
+Or if you want the first extension :
+
+<pre>
+data = fa.FitsArray(file="swp05569slg.fits", ext=1)
+</pre>
+
+For now on, you can manipulate your data as you would for any ndarray
+in Python. All methods available for ndarrays are directly available:
+
+<pre>
+>>> data.ndim
+2
+>>> data.shape
+(110, 831)
+>>> data[0, 0]
+785.94629
+>>> data[0, 0:10]
+FitsArray([  785.94628906,  1013.7421875 ,   885.79589844,   756.12109375,
+         987.375     ,   312.19921875,   476.88671875,   648.05859375,
+         753.09472656,  1009.41992188], dtype=float32)
+</pre>
+
+On top of this, you can directly access header information:
+
+<pre>
+>>> data.header.keys()
+['SIMPLE', 'BITPIX', 'NAXIS', 'NAXIS1', 'NAXIS2', 'EXTEND', 'FILENAME', 'TELESCOP', 'ORIGIN', 'CAMERA', 'IMAGE', 'APERTURE', 'DISPERSN', 'DATE-OBS', 'DATE-PRO', 'DATE', 'RA', 'DEC', 'EQUINOX', 'JDATE', 'THDA-RES', 'THDA-SPE', 'CRVAL1', 'CRPIX', 'CDELT1', 'COMMENT', '', 'HISTORY']
+>>> data['CRVAL1']
+1000.0
+</pre>
+
+All these nice features are really available thanks to
+PyFITS. fitsarray is just a convenient wrapper around the PyFITS
+library.
+
+<h3> Installation </h3>
+
+If you do not want to install fitsutils and still want to use
+fitsarray, you can simply put
+the <a href="https://github.com/nbarbey/fitsutils/raw/master/fitsutils/fitsarray.py">
+fitsarray file </a> in your path. Do not forget to make it
+executable:
+
+<pre>
+wget https://github.com/nbarbey/fitsutils/raw/master/fitsutils/fitsarray.py
+chmod +x fitsarray.py
+</pre>
+
+    <div class="footer">
+      get the source code on GitHub :
+      <a href="http://github.com/nbarbey/fitsutils">nbarbey/fitsutils</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
