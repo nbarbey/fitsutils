@@ -19,6 +19,9 @@ Transport System (FITS) files in the command-line. It contains:
 - fitsarray: A module to load FITS data as ndarray storing header as
   an attribue.
 
+- fitstables: A module to load and write FITS binary tables as
+  dictionaries of ndarrays.
+
 Requirements
 =============
 
