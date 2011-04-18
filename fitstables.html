@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <title>nbarbey/fitsutils @ GitHub</title>
+  <link rel="stylesheet" type="text/css" href="fitsutils.css" />
+</head>
+
+<body>
+  <a href="http://github.com/nbarbey/fitsutils">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+	 src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+	 alt="Fork me on GitHub" />
+  </a>
+
+  <div id="container">
+
+    <div class="download">
+      <a href="http://github.com/nbarbey/fitsutils/zipball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+      <a href="http://github.com/nbarbey/fitsutils/tarball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+    </div>
+
+    <h1><a href="http://github.com/nbarbey/fitsutils">fitsutils</a>
+      <span class="small">by <a href="http://github.com/nbarbey">nbarbey</a></span></h1>
+
+    <div class="description">
+      A set of small command-line tools for FITS files
+    </div>
+
+<h2> fitstables </h2>
+
+<h3> Why fitstables </h3>
+
+
+<h3> A simple exemple </h3>
+
+
+
+<pre>
+wget http://fits.gsfc.nasa.gov/samples/IUElwp25637mxlo.fits
+</pre>
+
+<pre>
+from fitstables import *
+d = mrdfits("IUElwp25637mxlo.fits")
+print d
+</pre>
+
+You should get something like this :
+<pre>
+</pre>
+
+
+If you do not want to install fitsutils and still want to use
+fitstables, you can simply put
+the <a href="https://github.com/nbarbey/fitsutils/raw/master/fitsutils/fitstables.py">
+fitstables file </a> in your path. Do not forget to make it
+executable.
+
+<pre>
+wget https://github.com/nbarbey/fitsutils/raw/master/fitsutils/fitstables.py
+chmod +x fitstables.py
+</pre>
+
+    <div class="footer">
+      get the source code on GitHub :
+      <a href="http://github.com/nbarbey/fitsutils">nbarbey/fitsutils</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
