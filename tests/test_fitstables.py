@@ -6,7 +6,7 @@ Unit tests
 import nose
 import os
 import numpy as np
-import fitstables
+from fitsutils import fitstables
 
 # test data
 location = "http://www.cv.nrao.edu/fits/data/samples/bintable/"
