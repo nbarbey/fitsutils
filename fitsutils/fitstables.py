@@ -35,7 +35,7 @@ def mrdfits(filename, extension=1, transpose=False, verbose=False):
     hdu = fits[extension]
     data = hdu.data
     if not (isinstance(hdu, pyfits.BinTableHDU)
-            or isintance(hdu, pyfits.TableHDU)):
+            or isinstance(hdu, pyfits.TableHDU)):
         # this is an "image"
         return data
     # else this is a table (ASCII or Binary)
@@ -66,7 +66,7 @@ def mrdfits(filename, extension=1, transpose=False, verbose=False):
     #
     return mydict
 
-def mwrfits(mydict, filename, clobber=False):
+def mwrfits(mydict, filename, clobber=False, ascii=False):
     """
     Write an dictionary as a binary table in a FITS file.
 
@@ -101,7 +101,10 @@ def mwrfits(mydict, filename, clobber=False):
     arr = np.zeros(1, dtype=mydtype)
     for k, v in mydict.iteritems():
         arr[k] = v
-    hdu = pyfits.BinTableHDU(arr)
+    if ascii:
+        raise NotImplemented() # hdu = pyfits.TableHDU(arr) # not working !
+    else:
+        hdu = pyfits.BinTableHDU(arr)
     # shape order is reverted to satisfy the FITS conventions
     # (quick axis is first in FITS and second in python)
     for i, v in enumerate(mydict.values()):
