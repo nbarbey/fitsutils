@@ -74,6 +74,57 @@ print d['FLUX'][:10]
 # etc ...
 </pre>
 
+<h3> Important note </h3>
+
+<p>
+Note that dimension orders are different in IDL and Python. Indeed,
+IDL has column-major ordering (Fortran ordering) while Python has
+row-major ordering (C ordering) of dimensions. 
+</p>
+
+<p>
+For instance, writing a FITS in IDL and reading it in Python.
+</p>
+
+In IDL, type:
+<pre>
+IDL> data={data:indgen(4,5)}
+IDL> print, size(data.data, /dim)
+;           4           5
+IDL> print, data.data[3, 2]
+;11
+IDL> print, data.data[2, 3]
+;14
+
+IDL> print, data.data
+;       0       1       2       3
+;       4       5       6       7
+;       8       9      10      11
+;      12      13      14      15
+;      16      17      18      19
+
+IDL> mwrfits, data, 'stamp.fits'
+</pre>
+
+Now, in Python:
+
+<pre>
+In [1]: from fitsutils.fitstables import *
+
+In [2]: data = mrdfits('stamp.fits')
+
+In [3]: data
+Out[3]: 
+{'DATA': array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11],
+       [12, 13, 14, 15],
+       [16, 17, 18, 19]], dtype=int16)}
+
+In [4]: data['DATA'][2, 3]
+Out[4]: 11
+</pre>
+
 <h3> Partial installation </h3>
 
 
