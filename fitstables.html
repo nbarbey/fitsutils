@@ -34,24 +34,47 @@
 
 <h3> Why fitstables </h3>
 
+fitstables aims at rewriting the IDL mrdfits and mwrfits functions.
+It can read FITS files written by the IDL mwrfits function as well as
+writing such files. However, for now, only the most basic usages is
+implemented.
 
 <h3> A simple exemple </h3>
 
-
+Get a simple fits file on the internet containing a binary table.
 
 <pre>
 wget http://fits.gsfc.nasa.gov/samples/IUElwp25637mxlo.fits
 </pre>
 
+Now, you can launch your favorite python command line interface
+(IPython for instance). Inside, python type:
+
 <pre>
-from fitstables import *
+from fitsutils import *
 d = mrdfits("IUElwp25637mxlo.fits")
-print d
+print d.keys()
 </pre>
 
 You should get something like this :
 <pre>
+['DELTAW', 'QUALITY', 'FLUX', 'NPOINTS', 'BACKGROUND', 'APERTURE', 'WAVELENGTH', 'NET', 'SIGMA']
+
 </pre>
+
+This is the list of variables contained in the binary table.  Each
+variable is a Numpy ndarray. So you can access your data as usual in
+Numpy:
+
+<pre>
+# get the shape of the FLUX array:
+print d['FLUX'].shape
+# get the first 10 FLUX values:
+print d['FLUX'][:10]
+# etc ...
+</pre>
+
+<h3> Partial installation </h3>
 
 
 If you do not want to install fitsutils and still want to use
