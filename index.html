@@ -33,48 +33,56 @@
     <p>This is a small set of scripts to easily handle Flexible Image
 Transport System (FITS) files in the command-line. It contains:
 
-<ul>
-<li> <a href="fitsheader.html"> fitsheader</a>: Display the header of a FITS file to stdout. </li>
+      <ul>
+	<li> <a href="fitsheader.html"> fitsheader</a>: Display the header of
+	  a FITS file to stdout. </li>
 
-<li> <a href="fitsupdate.html"> fitsupdate</a>: Update the header of a FITS file. </li>
+	<li> <a href="fitsupdate.html"> fitsupdate</a>: Update the header of a
+	  FITS file. </li>
 
-<li> <a href="fitsfilter.html"> fitsfilter</a>: Filter a list of files using conditions on header content. </li>
+	<li> <a href="fitsfilter.html"> fitsfilter</a>: Filter a list of files
+	  using conditions on header content. </li>
 
-<li> <a href="fitsview.html"> fitsview</a> fitsview: Display a simple FITS image (requires matplotlib). </li>
+	<li> <a href="fitsview.html"> fitsview</a> fitsview: Display a simple
+	  FITS image (requires matplotlib). </li>
 
-<li> <a href="fitsarray.html"> fitsarray</a> fitsarray: A module to load FITS data as ndarray storing header as
-  an attribue. </li>
-</ul>
-</p><h2>Dependencies</h2>
-<p>You will need pyfits and numpy (and matplotlib for fitsview).
-</p>
-<h2>Install</h2>
-<p>
-Get the source code, e.g::
+	<li> <a href="fitsarray.html"> fitsarray</a> fitsarray: A module to
+    load FITS data as ndarray storing header as an attribue. </li>
 
-<pre>
-  git clone https://github.com/nbarbey/fitsutils
-</pre>
+	<li> <a href="fitstables.html"> fitstables</a> fitstables: A module to
+	  load and write FITS dictionaries as FITS binary tables. Aims to
+	  replace IDL mrdfits and mwrfits.</li>
+      </ul>
 
-Install with distutils from new directory::
+    </p><h2>Dependencies</h2>
 
-<pre>
-  python setup.py install
-</pre>
+    <p>You will need pyfits and numpy (and matplotlib for fitsview). </p>
 
-If you do not have root privilege, you can install in your home::
+    <h2>Install</h2>
+    <p>  Get the source code, e.g::
+      <pre>
+	git clone https://github.com/nbarbey/fitsutils
+      </pre>
 
-<pre>
-  python setup.py install --prefix=$HOME/local/
-</pre>
+      Install with distutils from new directory::
 
-</p>
-<h2>License</h2>
-<p>CeCILL</p>
-<h2>Authors</h2>
-<p>Nicolas Barbey (nicolas.a.barbey@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Nicolas Barbey (nicolas.a.barbey@gmail.com)<br/>      </p>
+      <pre>
+	python setup.py install
+      </pre>
+
+      If you do not have root privilege, you can install in your home::
+
+      <pre>
+	python setup.py install --prefix=$HOME/local/
+      </pre>
+
+    </p>
+    <h2>License</h2>
+    <p>CeCILL</p>
+    <h2>Authors</h2>
+    <p>Nicolas Barbey (nicolas.a.barbey@gmail.com)<br/><br/>      </p>
+    <h2>Contact</h2>
+    <p>Nicolas Barbey (nicolas.a.barbey@gmail.com)<br/>      </p>
 
     <h2>Download</h2>
     <p>
